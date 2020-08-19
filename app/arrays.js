@@ -4,6 +4,12 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+
+    let x = arr.shift()
+
+    arr.push(x);
+
+    return arr
 }
 
 
@@ -16,18 +22,51 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+
+    let count = 0
+    let largestNumber = arr[0]
+    let answer = {}
+
+    for (let index = 0; index < arr.length; index++) {
+        const currentnum = arr[index];
+        if (currentnum > largestNumber) {
+            largestNumber = currentnum
+        }
+    }
+
+    for (let index = 0; index < arr.length; index++) {
+        const num = arr[index];
+        if (num == largestNumber) {
+            count++
+        }
+    }
+
+    answer[largestNumber] = count
+    if (count > 1) {
+        return answer
+
+    }
+    else {
+        return largestNumber
+    }
 }
 
 
 // ------------------------------------------
 
 
-// 3. Given an array of numbers, return an array where every element in the given array is multiplied by the length of the given array.
+// 3. Given an arrays of numbers, return an array where every element in the given array is multiplied by the length of the given array.
 // Example:
 // input:  [4, 2, 1, 7]
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    let numbers = []
+
+    for (let index = 0; index < arr.length; index++) {
+        numbers.push(arr[index] * arr.length);
+    }
+    return numbers
 }
 
 
@@ -76,7 +115,15 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
-
+    for (let i = 0; i < flights.length; i++) {
+        const flight = flights[i];
+        if (destination.toUpperCase() == flight.to.toUpperCase()) {
+            if (firstClass) {
+                return flight.prices.firstClass
+            }
+            return flight.prices.standard
+        }
+    }
 }
 
 
